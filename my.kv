@@ -1,30 +1,36 @@
-#<>: === parent tag (establishes format for rest of code)
+WindowManager:
+    MainWindow:
+    SecondWindow: 
 
-#<Button>:
-    #font_size: 40
-    #color: 0.3, 0.6, 0.7, 1
-    #size_hint: 0.3, 0.5
+<MainWindow>:
+    name: "main"
+
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw 
+                multiline: False
+
+        Button:
+            text: "Submit"
+            on_release: 
+                app.root.current = "second" if passw.text == "tim" else "main"
+                root.manager.transition.direction = "left"
+            
 
 
-#<FloatLayout>:
-    #Button:
-
-        #Hints at position of button {"x", "y", "top", "bottom", "left", "right"} (*Between 0 and 1) (Coordinate system, (0,0) = bottom left)
-        #pos_hint: {"x": 0.5, "top": 1}
-
-        #text: "Tech With"
-
-    #Button:
-        #id: btn
-
-        #Button has 3 states (normal, down)
-        #text: "Tim" if btn.state == "normal" else "Down"
-        #background_color: 0.1, .4, .5, 1
-
-
-#<Touch>:
-    #btn: btn
-    #Button:
-        #id: btn
-        #text: "My BTN"
-        
+<SecondWindow>:
+    name: "second"
+    Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+    
