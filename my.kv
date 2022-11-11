@@ -1,0 +1,31 @@
+<MyGrid>
+    
+    name: name
+    email: email
+
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 2
+            Label:
+                text: "Name: " 
+
+            TextInput: 
+                id: name
+                multiline: False
+
+            Label: 
+                text: "Email:" 
+
+            TextInput:
+                id: email
+                multiline: False
+
+        Button:
+            text: "Submit"
+
+            #Use root to find to find methods inside a class, otherwise it will look for a function in the code and find nothing
+            on_press: root.btn()
