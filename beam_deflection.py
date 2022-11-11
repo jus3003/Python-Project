@@ -18,7 +18,7 @@ def Circle(R):
     MoI = (1/64)*np.pi*Dia**4
     print('The area is:',Area)
     print('MoI is:', MoI)
-def Rectangle(B,H):
+def Rectangle(B,H): 
     Area = B*H
     MoI = (1/12)*B*H**4
     print('The area is:',Area)
