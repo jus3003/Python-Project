@@ -17,13 +17,13 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 class TestButton(Widget):
     pass
 
-class Button (App):
+class ButtonApp(App):
     def build (self):
         return TestButton()
 
 #Run Program 
 if __name__ == "__main__": 
-    Button().run()
+    ButtonApp().run()
 
 
 

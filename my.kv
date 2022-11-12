@@ -1,36 +1,77 @@
 WindowManager:
-    MainWindow:
-    SecondWindow: 
+    TitleWindow:
+    FixedWindow:
+    PinWindow:
+    OutputWindow:
 
-<MainWindow>:
-    name: "main"
+<TitleWindow>:
+    name: "title"
+
+    FloatLayout:
+        Button: 
+            text: "CLUELESS.INC"
+            font_size: self.width/20
+            size_hint: 1, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.9 }
+
+        Button:
+            size_hint: 0.7, 0.25
+            pos_hint: {"center_x": 0.5, "top": 0.7 }
+
+            background_normal: 'fixed-free.jpg'
+            background_down: 'fixed-free.jpg'
+
+            on_release:
+                app.root.current = "fixed"
+                root.manager.transition.direction = "left"        
+                    
+
+        Button:
+            size_hint: 0.7, 0.25
+            pos_hint: {"center_x": 0.5, "top": 0.35 }
+
+            background_normal: 'pin-roller.jpg'
+            background_down: 'pin-roller.jpg'
+
+            on_release:
+                app.root.current = "pin"
+                root.manager.transition.direction = "left"
+
+
+<FixedWindow>:
+    name: "fixed"
 
     GridLayout:
         cols: 1
-
-        GridLayout:
-            cols:2
-
-            Label:
-                text: "Password: "
-
-            TextInput:
-                id: passw 
-                multiline: False
+        rows: 2 
 
         Button:
-            text: "Submit"
-            on_release: 
-                app.root.current = "second" if passw.text == "tim" else "main"
-                root.manager.transition.direction = "left"
-            
+            text: "fixed"
+
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "title"
+                root.manager.transition.direction = "right"
+    
 
 
-<SecondWindow>:
-    name: "second"
-    Button:
-        text: "Go Back"
-        on_release:
-            app.root.current = "main"
-            root.manager.transition.direction = "right"
+<PinWindow>:
+    name: "pin"
+
+    GridLayout:
+        cols: 1 
+        rows: 2 
+
+        Button: 
+            text: "pin"
+
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "title"
+                root.manager.transition.direction = "right"
+
+
+
     
