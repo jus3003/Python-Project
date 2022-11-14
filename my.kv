@@ -1,64 +1,12 @@
 WindowManager:
-    TitleWindow:
-    FixedWindow:
+    ConnectionWindow:
+    VariablesWindow:
     PinWindow:
     OutputWindow:
 
-<FixedWindow>:
-    name: "fixed"
-
-    #canvas.before:
-        #Color:
-            #rgba: (1,1,1,1)
-        #Rectangle:
-            #pos: self.pos
-            #size: self.size 
-
-    FloatLayout:
-        Button:
-            size_hint: 1, 0.3
-            pos_hint: {"center_x": 0.5, "top": 0.9 }
-            background_normal: 'fixed-free.jpg'
-            background_down: 'fixed-free.jpg'
-
-        GridLayout:
-            size_hint: 1, 0.5
-            pos_hint: {"center_x": 0.5, "bottom": 0.1}
-
-            cols: 1
-            rows: 2 
-
-            GridLayout:
-                cols: 4
-                rows: 1
-
-                Button:
-                    text: "Load Type"
-
-                Button:
-                    id: distributed
-                    text: "distributed"
-                    on_press: root.distributed()
-
-                Button:
-                    id: point
-                    text: "point"
-                    on_press: root.point()
-                Button:
-                    id: moment
-                    text: "moment"
-                    on_press: root.moment()
-
-
-            Button:
-                text: "Go Back"
-                on_release:
-                    app.root.current = "title"
-                    root.manager.transition.direction = "right"
-
-
-<TitleWindow>:
-    name: "title"
+<ConnectionWindow>:
+    name: "connection"
+    id: connection
 
     FloatLayout:
         Button: 
@@ -75,7 +23,7 @@ WindowManager:
             background_down: 'fixed-free.jpg'
 
             on_release:
-                app.root.current = "fixed"
+                app.root.current = "variables"
                 root.manager.transition.direction = "left"        
                     
 
@@ -87,12 +35,72 @@ WindowManager:
             background_down: 'pin-roller.jpg'
 
             on_release:
-                app.root.current = "pin"
+                app.root.current = "variables"
                 root.manager.transition.direction = "left"
 
+<VariablesWindow>:
+    name: "variables"
+    id: variables
+
+    FloatLayout:
+        
+        GridLayout:
+            size_hint: 1, 0.3
+            pos_hint: {"center_x": 0.5, "top": 0.9 }
+            cols: 1
+            rows: 1
+
+            Button:
+                text: "insert diagram of connection chosen"   
+
+        GridLayout:
+            size_hint: 1, 0.5
+            pos_hint: {"center_x": 0.5, "bottom": 0.1}
+            cols: 1
+            rows: 2
+
+            GridLayout:
+                cols: 4
+                rows: 1
+
+                Button:
+                    text: root.manager.load
+
+                Button:
+                    id: distributed
+                    text: "distributed"
+                    on_press: root.manager.load = self.text
+                    #on_press: root.manager.current = "title"
+                Button:
+                    id: point
+                    text: "point"
+                    on_press: root.manager.load = self.text
+                Button:
+                    id: moment
+                    text: "moment"
+                    on_press: root.manager.load = self.text
+
+            Button:
+                text: "Go Back"
+                on_release:
+                    app.root.current = "connection"
+                    root.manager.transition.direction = "right"
 
 
-    
+
+
+
+<OutputWindow>:
+    name: "output"
+    id: output
+
+    GridLayout: 
+        row: 1
+        col: 1
+
+        Button:
+            text: "Output Window"
+
 
 
 <PinWindow>:
