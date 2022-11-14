@@ -1,7 +1,6 @@
 WindowManager:
     ConnectionWindow:
     VariablesWindow:
-    PinWindow:
     OutputWindow:
 
 <ConnectionWindow>:
@@ -18,18 +17,20 @@ WindowManager:
         Button:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.7 }
+            text: "Fixed-Free" 
 
             background_normal: 'fixed-free.jpg'
             background_down: 'fixed-free.jpg'
 
             on_release:
                 app.root.current = "variables"
-                root.manager.transition.direction = "left"        
+                root.manager.transition.direction = "left"
+                root.manager.connection = self.text        
                     
-
         Button:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.35 }
+            text: "Pin-Roller"
 
             background_normal: 'pin-roller.jpg'
             background_down: 'pin-roller.jpg'
@@ -37,6 +38,7 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
+                root.manager.connection = self.text     
 
 <VariablesWindow>:
     name: "variables"
@@ -45,8 +47,8 @@ WindowManager:
     FloatLayout:
         
         GridLayout:
-            size_hint: 1, 0.3
-            pos_hint: {"center_x": 0.5, "top": 0.9 }
+            size_hint: 1, 0.2
+            pos_hint: {"center_x": 0.5, "top": 0.95 }
             cols: 1
             rows: 1
 
@@ -54,8 +56,8 @@ WindowManager:
                 text: "insert diagram of connection chosen"   
 
         GridLayout:
-            size_hint: 1, 0.5
-            pos_hint: {"center_x": 0.5, "bottom": 0.1}
+            size_hint: 1, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.7}
             cols: 1
             rows: 2
 
@@ -70,24 +72,46 @@ WindowManager:
                     id: distributed
                     text: "distributed"
                     on_press: root.manager.load = self.text
-                    #on_press: root.manager.current = "title"
+                    on_release: root.manager.current = "output"
+                    
                 Button:
                     id: point
                     text: "point"
                     on_press: root.manager.load = self.text
+                    on_release: root.manager.current = "output"
                 Button:
                     id: moment
                     text: "moment"
                     on_press: root.manager.load = self.text
+                    on_release: root.manager.current = "output"
 
-            Button:
-                text: "Go Back"
-                on_release:
-                    app.root.current = "connection"
-                    root.manager.transition.direction = "right"
+        GridLayout:
+            size_hint: 0.7, 0.5
+            pos_hint: {"right": 1}
+            cols: 2
+            rows: 3
 
+            Label:
+                text: "a"
+            TextInput:
+                id: a_value
 
+            Label:
+                text: "b"
+            TextInput:
+                id: b_value
 
+            Button: 
+                text: "Save Data"
+                on_release: root.save_data()
+
+        Button:
+            size_hint: 0.2, 0.1
+            pos_hint: {"left": 1, "bottom": 0}
+            text: "Go Back"
+            on_release:
+                app.root.current = "connection"
+                root.manager.transition.direction = "right"
 
 
 <OutputWindow>:
@@ -95,30 +119,18 @@ WindowManager:
     id: output
 
     GridLayout: 
-        row: 1
-        col: 1
+        size_hint: 1, 0.5
+        pos_hint: {"center_x": 0.5, "bottom": 0.5}
+        rows: 2
+        cols: 1
 
         Button:
-            text: "Output Window"
-
-
-
-<PinWindow>:
-    name: "pin"
-
-    GridLayout:
-        cols: 1 
-        rows: 2 
+            text: root.manager.connection
 
         Button: 
-            text: "pin"
+            text: "Go Back" 
+            on_release: 
+                app.root.current = "variables"
+                root.manager.transition.direction = "left"
 
-        Button:
-            text: "Go Back"
-            on_release:
-                app.root.current = "title"
-                root.manager.transition.direction = "right"
-
-
-
-    
+ 
