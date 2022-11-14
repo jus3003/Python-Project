@@ -92,24 +92,50 @@ WindowManager:
                     on_release: root.manager.current = "output"
 
         GridLayout:
+            id: container
             size_hint: 0.7, 0.5
             pos_hint: {"right": 1}
             cols: 2
-            rows: 3
+            #rows: 3
 
             Label:
-                text: "a"
+                text: "Load Magnitude"
+            TextInput:
+                id: load_value
+
+            Label:
+                text: "A Length"
             TextInput:
                 id: a_value
 
             Label:
-                text: "b"
+                text: "R"
+            TextInput:
+                id: r_value
+
+            Label:
+                text: "B"
             TextInput:
                 id: b_value
 
+            Label:
+                text: "H"
+            TextInput:
+                id: h_value
+
+            Label:
+                text: "L"
+            TextInput:
+                id: ;_value
+                
             Button: 
-                text: "Save Data"
-                on_release: root.save_data()
+                text: "Save Load/Connection Type"
+                on_release: root.save_load_type()
+
+            Button: 
+                text: "Save Variables"
+                on_release: root.save_variables()
+
 
         Button:
             size_hint: 0.2, 0.1
