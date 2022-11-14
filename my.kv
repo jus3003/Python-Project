@@ -25,7 +25,8 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-                root.manager.connection = self.text        
+                root.manager.connection = self.text
+                on_release: root.connection_fixed()       
                     
         Button:
             size_hint: 0.7, 0.25
@@ -38,7 +39,8 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-                root.manager.connection = self.text     
+                root.manager.connection = self.text
+                on_release: root.connection_pin()      
 
 <VariablesWindow>:
     name: "variables"
@@ -71,18 +73,22 @@ WindowManager:
                 Button:
                     id: distributed
                     text: "distributed"
-                    on_press: root.manager.load = self.text
+                    on_press: root.load_type = self.text
+                    on_press: root.load_distributed()
                     on_release: root.manager.current = "output"
+                    #on_release: load_click()
                     
                 Button:
                     id: point
                     text: "point"
-                    on_press: root.manager.load = self.text
+                    on_press: root.load_type = self.text
+                    on_press: root.load_point()
                     on_release: root.manager.current = "output"
                 Button:
                     id: moment
                     text: "moment"
-                    on_press: root.manager.load = self.text
+                    on_press: root.load_type = self.text
+                    on_press: root.load_moment()
                     on_release: root.manager.current = "output"
 
         GridLayout:
