@@ -14,7 +14,7 @@ WindowManager:
             size_hint: 1, 0.1
             pos_hint: {"center_x": 0.5, "top": 0.9 }
 
-        Button:
+        ToggleButton:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.7 }
             text: "Fixed-Free" 
@@ -28,7 +28,7 @@ WindowManager:
                 root.manager.connection = self.text
                 on_release: root.connection_fixed()       
                     
-        Button:
+        ToggleButton:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.35 }
             text: "Pin-Roller"
@@ -70,26 +70,26 @@ WindowManager:
                 Button:
                     text: root.manager.load
 
-                Button:
+                ToggleButton:
                     id: distributed
                     text: "distributed"
                     on_press: root.load_type = self.text
                     on_press: root.load_distributed()
-                    on_release: root.manager.current = "output"
-                    #on_release: load_click()
+                    #on_release: root.manager.current = "output"
                     
-                Button:
+                    
+                ToggleButton:
                     id: point
                     text: "point"
                     on_press: root.load_type = self.text
                     on_press: root.load_point()
-                    on_release: root.manager.current = "output"
-                Button:
+                    #on_release: root.manager.current = "output"
+                ToggleButton:
                     id: moment
                     text: "moment"
                     on_press: root.load_type = self.text
                     on_press: root.load_moment()
-                    on_release: root.manager.current = "output"
+                    #on_release: root.manager.current = "output"
 
         GridLayout:
             id: container
@@ -102,39 +102,52 @@ WindowManager:
                 text: "Load Magnitude"
             TextInput:
                 id: load_value
+                multiline: False
+                input_filter: 'float'
 
             Label:
                 text: "A Length"
             TextInput:
                 id: a_value
+                multiline: False
+                input_filter: 'float'
 
             Label:
                 text: "R"
             TextInput:
                 id: r_value
+                multiline: False
+                input_filter: 'float'
 
             Label:
                 text: "B"
             TextInput:
                 id: b_value
+                multiline: False
+                input_filter: 'float'
 
             Label:
                 text: "H"
             TextInput:
                 id: h_value
+                multiline: False
+                input_filter: 'float'
 
             Label:
                 text: "L"
             TextInput:
                 id: l_value
+                multiline: False
+                input_filter: 'float'
                 
-            Button: 
-                text: "Save Load/Connection Type"
-                on_release: root.save_load_type()
+            #Button: 
+                #text: "Save Load/Connection Type"
+                #on_release: root.save_load_type()
 
             Button: 
                 text: "Save Variables"
                 on_release: root.save_variables()
+                on_release: root.manager.current = "output"
 
 
         Button:
