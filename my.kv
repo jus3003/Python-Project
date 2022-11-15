@@ -60,40 +60,72 @@ WindowManager:
         GridLayout:
             size_hint: 1, 0.1
             pos_hint: {"center_x": 0.5, "top": 0.7}
-            cols: 1
-            rows: 2
+            cols: 4
+            rows: 1
 
-            GridLayout:
-                cols: 4
-                rows: 1
+            Button:
+                text: root.manager.load
 
-                Button:
-                    text: root.manager.load
-
-                ToggleButton:
-                    id: distributed
-                    text: "distributed"
-                    on_press: root.load_type = self.text
-                    on_press: root.load_distributed()
-                    #on_release: root.manager.current = "output"
+            ToggleButton:
+                id: distributed
+                text: "distributed"
+                on_press: root.manager.load = self.text
+                on_press: root.load_distributed()                    
                     
+            ToggleButton:
+                id: point
+                text: "point"
+                on_press: root.manager.load = self.text
+                on_press: root.load_point()
+    
+            ToggleButton:
+                id: moment
+                text: "moment"
+                on_press: root.manager.load = self.text
+                on_press: root.load_moment()
+
+        GridLayout:
+            size_hint: 1, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.5}
+            cols: 6
+            rows: 1
+
+            Button:
+                text: root.manager.mat
+
+            ToggleButton:
+                id: wood
+                text: "wood"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_wood()        
                     
-                ToggleButton:
-                    id: point
-                    text: "point"
-                    on_press: root.load_type = self.text
-                    on_press: root.load_point()
-                    #on_release: root.manager.current = "output"
-                ToggleButton:
-                    id: moment
-                    text: "moment"
-                    on_press: root.load_type = self.text
-                    on_press: root.load_moment()
-                    #on_release: root.manager.current = "output"
+            ToggleButton:
+                id: steel
+                text: "steel"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_steel()
+
+            ToggleButton:
+                id: aluminum
+                text: "aluminum"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_aluminum()
+
+            ToggleButton:
+                id: concrete
+                text: "concrete"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_concrete()
+
+            ToggleButton:
+                id: plastic
+                text: "plastic"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_plastic()
 
         GridLayout:
             id: container
-            size_hint: 0.7, 0.5
+            size_hint: 0.3, 0.3
             pos_hint: {"right": 1}
             cols: 2
             #rows: 3
@@ -145,10 +177,10 @@ WindowManager:
                 #on_release: root.save_load_type()
 
             Button: 
-                text: "Save Variables"
-                on_release: root.save_variables()
+                text: "Calculate"
+                on_press: root.save_variables()
+                on_release: root.calculate_variables()
                 on_release: root.manager.current = "output"
-
 
         Button:
             size_hint: 0.2, 0.1
