@@ -198,11 +198,22 @@ WindowManager:
     GridLayout: 
         size_hint: 1, 0.5
         pos_hint: {"center_x": 0.5, "bottom": 0.5}
-        rows: 2
+        rows: 5
         cols: 1
 
+        Button: 
+            text: "check output list"
+            on_press: root.output_pass()
+
         Button:
-            text: root.manager.connection
+            text: "Success or Error Message"
+
+        Button: 
+            text: "Output Results"
+
+        Button:
+            id: angle_left_label
+            text: "angle left label"
 
         Button: 
             text: "Go Back" 
