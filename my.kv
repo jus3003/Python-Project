@@ -87,7 +87,7 @@ WindowManager:
         GridLayout:
             size_hint: 1, 0.1
             pos_hint: {"center_x": 0.5, "top": 0.5}
-            cols: 4
+            cols: 6
             rows: 1
 
             Button:
@@ -108,8 +108,20 @@ WindowManager:
             ToggleButton:
                 id: aluminum
                 text: "aluminum"
-                on_press: root.manager.e_value = self.text
+                on_press: root.manager.mat = self.text
                 on_press: root.mat_aluminum()
+
+            ToggleButton:
+                id: concrete
+                text: "concrete"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_concrete()
+
+            ToggleButton:
+                id: plastic
+                text: "plastic"
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_plastic()
 
         GridLayout:
             id: container

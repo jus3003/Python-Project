@@ -64,7 +64,7 @@ def BD(R,B,H,L,A,support,q,P,Mo,E):
             #a location
             deflection = (3*L-A)*(P*A**2)/(6*E*MoI)
             angle = (P*A**2)/(2*E*MoI)
-            print('Deflection:',deflection)
+            print('Deflection:', deflection)
             print('Angle:',angle)
 
         #moments
