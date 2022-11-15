@@ -17,7 +17,7 @@ WindowManager:
         ToggleButton:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.7 }
-            text: "Fixed-Free" 
+            #text: "Fixed-Free" 
 
             background_normal: 'fixed-free.jpg'
             background_down: 'fixed-free.jpg'
@@ -25,13 +25,13 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-                root.manager.connection = self.text
+                #root.manager.connection = self.text
                 on_release: root.connection_fixed()       
                     
         ToggleButton:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.35 }
-            text: "Pin-Roller"
+            #text: "Pin-Roller"
 
             background_normal: 'pin-roller.jpg'
             background_down: 'pin-roller.jpg'
@@ -39,7 +39,7 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-                root.manager.connection = self.text
+                #root.manager.connection = self.text
                 on_release: root.connection_pin()      
 
 <VariablesWindow>:
@@ -144,12 +144,12 @@ WindowManager:
                 multiline: False
                 input_filter: 'float'
 
-            Label:
-                text: "R"
-            TextInput:
-                id: r_value
-                multiline: False
-                input_filter: 'float'
+            #Label:
+                #text: "R"
+            #TextInput:
+                #id: r_value
+                #multiline: False
+                #input_filter: 'float'
 
             Label:
                 text: "B"
@@ -201,15 +201,15 @@ WindowManager:
         rows: 5
         cols: 1
 
-        Button: 
-            text: "check output list"
-            on_press: root.output_pass()
+        #Button: 
+            #text: "check output list"
+            #on_press: root.output_pass()
 
         Button:
             text: "Success or Error Message"
 
-        Button: 
-            text: "Output Results"
+        #Button: 
+            #text: "Output Results"
 
         BoxLayout:
             Button:
