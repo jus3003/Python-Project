@@ -20,7 +20,7 @@ def Circle(R):
     print('MoI is:', MoI)
 def Rectangle(B,H):
     Area = B*H
-    MoI = (1/12)*B*H**4
+    MoI = (1/12)*B*H**3
     print('The area is:',Area)
     print('MoI is:', MoI)   
 
@@ -35,7 +35,7 @@ def BD(R,B,H,L,A,support,q,P,Mo,E):
     if R == 0:
         #Shape is a rectangle haha
         Area = H*B
-        MoI = (1/12)*B*H**4
+        MoI = (1/12)*B*H**3
         print('The area is:',Area)
         print('MoI is:', MoI)
     elif B == 0:
