@@ -6,14 +6,36 @@ import numpy as np
 import pandas as pd
 
 #Extract Elastic Modulus
+import pandas as pd
+import requests
 
 url = 'https://www.engineeringtoolbox.com/young-modulus-d_417.html'
-html = requests.get(url, verify = False)
+html = requests.get(url).content
 df_list = pd.read_html(html)
 df = df_list[-1]
-print(df)
 df.to_csv('MaterialProperties.csv')
+df.columns = ['Material', 'YM', 'UTS', 'YS']
 
+#data = df.set_index('Material').to_dict(orient='index')
+data = df.to_dict(orient='index')
+#del data[('UTS')]
+#del data[('YS')]
+
+i = input('What material is used? ')
+
+n = 0
+for n in range(len(data)):
+    if i == data[n]['Material']:
+        Epull = data[n]['YM']
+    else:
+        n = n + 1
+
+if Epull == 'nan':
+    print("There is no Young's Modulus Available")
+else:
+    E = (int(Epull.split('-')[0])*(10**6))
+    print("The Young's Modulus is ",E," Pa")
+    
 
 #Extract price history of materials (Note: we could graph these on mat plotlib and output graph on our GUI to show user how the price of metals are going)
 
