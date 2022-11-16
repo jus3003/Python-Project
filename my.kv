@@ -235,7 +235,8 @@ WindowManager:
             #on_press: root.output_pass()
 
         Button:
-            text: "Success or Error Message"
+            id: error_checker
+            text: "Calculation Successful"
 
         #Button: 
             #text: "Output Results"
@@ -253,6 +254,7 @@ WindowManager:
 
         Button: 
             text: "Go Back" 
-            on_release: 
+            on_release:
+                #root.reset_error_message() 
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
