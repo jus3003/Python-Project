@@ -6,8 +6,6 @@ import numpy as np
 import pandas as pd
 
 #Extract Elastic Modulus
-import pandas as pd
-import requests
 
 def getE(Material):
 
@@ -35,7 +33,7 @@ def getE(Material):
     if Epull == 'nan':
         print("There is no Young's Modulus Available")
     else:
-        E = (int(Epull.split('-')[0])*(10**6))
+        E = (float(Epull.split('-')[0])*(10**6))
         print("The Young's Modulus is ",E," Pa")
 
 
