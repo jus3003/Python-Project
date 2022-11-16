@@ -53,7 +53,7 @@ WindowManager:
     FloatLayout:
         
         GridLayout:
-            size_hint: 1, 0.2
+            size_hint: 1, 0.3
             pos_hint: {"center_x": 0.5, "top": 0.95 }
             cols: 1
             rows: 1
@@ -68,8 +68,8 @@ WindowManager:
                 keep_ratio: True
 
         GridLayout:
-            size_hint: 0.7, 0.1
-            pos_hint: {"center_x": 0.5, "top": 0.7}
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "top": 0.6}
             cols: 3
             rows: 1
             spacing: [5,0]
@@ -99,7 +99,7 @@ WindowManager:
                 on_press: root.load_moment()
 
         GridLayout:
-            size_hint: 0.8, 0.1
+            size_hint: 0.8, 0.07
             pos_hint: {"center_x": 0.5, "top": 0.5}
             cols: 5
             rows: 1
@@ -143,58 +143,67 @@ WindowManager:
                 on_press: root.manager.mat = self.text
                 on_press: root.mat_plastic()
 
-        GridLayout:
+        FloatLayout:
             id: container
-            size_hint: 0.3, 0.3
-            pos_hint: {"right": 1}
-            cols: 2
-            #rows: 3
 
-            Label:
-                text: "Load Magnitude"
-            TextInput:
-                id: load_value
-                multiline: False
-                input_filter: 'float'
+            GridLayout:
+                cols: 1
+                size_hint: 0.2, 0.2
+                pos_hint: {"x": 0.25, "top": 0.35}
 
-            Label:
-                text: "A Length"
-            TextInput:
-                id: a_value
-                multiline: False
-                input_filter: 'float'
+                Label:
+                    text: "Load Magnitude"
+                Label:
+                    text: "Distance A (m)"            
+                Label:
+                    text: "Beam Base (m)"
+                Label:
+                    text: "Beam Height (m)"
+                Label:
+                    text: "Beam Length (m)"            
+
+            GridLayout:
+                cols: 1
+                size_hint: 0.35, 0.2
+                pos_hint: {"x": 0.45, "top": 0.35 }
+
+                TextInput:
+                    id: load_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: a_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: b_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: h_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: l_value
+                    multiline: False
+                    input_filter: 'float'
 
             #Label:
                 #text: "R"
             #TextInput:
                 #id: r_value
                 #multiline: False
-                #input_filter: 'float'
-
-            Label:
-                text: "B"
-            TextInput:
-                id: b_value
-                multiline: False
-                input_filter: 'float'
-
-            Label:
-                text: "H"
-            TextInput:
-                id: h_value
-                multiline: False
-                input_filter: 'float'
-
-            Label:
-                text: "L"
-            TextInput:
-                id: l_value
-                multiline: False
-                input_filter: 'float'
+                #input_filter: 'float'                
                 
             #Button: 
                 #text: "Save Load/Connection Type"
                 #on_release: root.save_load_type()
+
+        GridLayout:
+            size_hint: 0.7, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.1}
+            cols: 1
+            rows: 1
 
             Button: 
                 text: "Calculate"
@@ -203,7 +212,7 @@ WindowManager:
                 on_release: root.manager.current = "output"
 
         Button:
-            size_hint: 0.2, 0.1
+            size_hint: 0.1, 0.1
             pos_hint: {"left": 1, "bottom": 0}
             text: "Go Back"
             on_release:
