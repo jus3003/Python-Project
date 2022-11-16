@@ -7,6 +7,12 @@ import pandas as pd
 
 #Extract Elastic Modulus
 
+#Use inputs as seen on the website table
+#examples
+#getE('ABS plastics')
+#getE('Aluminum')
+#getE('Concrete')
+
 def getE(Material):
 
     url = 'https://www.engineeringtoolbox.com/young-modulus-d_417.html'
