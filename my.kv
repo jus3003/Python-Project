@@ -2,6 +2,7 @@ WindowManager:
     ConnectionWindow:
     VariablesWindow:
     OutputWindow:
+    Matplotlib:
 
 <ConnectionWindow>:
     name: "connection"
@@ -237,6 +238,8 @@ WindowManager:
         Button:
             id: error_checker
             text: "Calculation Successful"
+            on_release: root.manager.current = "matplotlib"
+            on_release: root.save_plot_data()
 
         #Button: 
             #text: "Output Results"
@@ -258,3 +261,29 @@ WindowManager:
                 #root.reset_error_message() 
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
+                
+
+<Matplotlib>:
+    name: "matplotlib"
+    id: matplotlib
+    #BoxLayout:
+        #id: grid
+        #size_hint_y: 0.8
+        #pos_hint: {"top":1}
+
+    GridLayout:
+        rows: 3
+        cols: 1
+
+        Image:
+            source: 'plotdata.jpg'
+            allow_stretch: True
+            keep_ratio: True
+
+        Button:
+            text: "Results"
+            on_release: root.manager.current = "output"
+        Button:
+            text: "Show it!"
+
+    
