@@ -19,7 +19,7 @@ def getE(Material):
     html = requests.get(url).content
     df_list = pd.read_html(html)
     df = df_list[-1]
-    df.to_csv('MaterialProperties.csv')
+    #df.to_csv('MaterialProperties.csv')
     df.columns = ['Material', 'YM', 'UTS', 'YS']
 
 #data = df.set_index('Material').to_dict(orient='index')
@@ -33,6 +33,7 @@ def getE(Material):
     for n in range(len(data)):
         if i == data[n]['Material']:
             Epull = data[n]['YM']
+            break
         else:
             n = n + 1
 
