@@ -27,7 +27,7 @@ WindowManager:
                 root.manager.transition.direction = "left"
                 #root.manager.connection = self.text
                 #root.manager.connection = "fixed"
-                root.manager.connection = 'fixed-free.jpg'
+                root.manager.connection = 'fixed-free-diagram.jpg'
                 on_release: root.connection_fixed()       
                     
         ToggleButton:
@@ -43,7 +43,7 @@ WindowManager:
                 root.manager.transition.direction = "left"
                 #root.manager.connection = self.text
                 #root.manager.connection = "pin"
-                root.manager.connection = 'pin-roller.jpg'
+                root.manager.connection = 'pin-roller-diagram.jpg'
                 on_release: root.connection_pin()      
 
 <VariablesWindow>:
@@ -154,7 +154,7 @@ WindowManager:
                 Label:
                     text: "Load Magnitude"
                 Label:
-                    text: "Distance A (m)"            
+                    text: "Load Location A (m)"            
                 Label:
                     text: "Beam Base (m)"
                 Label:
