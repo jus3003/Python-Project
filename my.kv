@@ -26,6 +26,8 @@ WindowManager:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
                 #root.manager.connection = self.text
+                #root.manager.connection = "fixed"
+                root.manager.connection = 'fixed-free.jpg'
                 on_release: root.connection_fixed()       
                     
         ToggleButton:
@@ -40,6 +42,8 @@ WindowManager:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
                 #root.manager.connection = self.text
+                #root.manager.connection = "pin"
+                root.manager.connection = 'pin-roller.jpg'
                 on_release: root.connection_pin()      
 
 <VariablesWindow>:
@@ -54,8 +58,14 @@ WindowManager:
             cols: 1
             rows: 1
 
-            Button:
-                text: "insert diagram of connection chosen"   
+            #Button:
+                #background_normal: 'pin-roller.jpg'
+                #background_down: 'pin-roller.jpg'   
+
+            Image:
+                source: root.manager.connection
+                allow_stretch: True
+                keep_ratio: True
 
         GridLayout:
             size_hint: 1, 0.1
