@@ -283,29 +283,59 @@ WindowManager:
             on_release: root.manager.current = "matplotlib"
             on_release: root.save_plot_data()
             
-                
 
 <Matplotlib>:
     name: "matplotlib"
     id: matplotlib
+    
+    FloatLayout:
+        TabbedPanel: 
+            size_hint: 1, 0.9
+            pos_hint: {"top":1}
+            do_default_tab: False
 
-    TabbedPanel: 
-        do_default_tab: False
+            TabbedPanelItem:
+                text: "Wood"
 
-        TabbedPanelItem:
-            text: "Wood"
+                Carousel:
+                    direction: "right"
+                    Image:
+                        source: 'pin-roller.jpg'
+                        allow_stretch: True
+                        keep_ratio: True
+                    Image:
+                        source: 'fixed-free.jpg'
+                        allow_stretch: True
+                        keep_ratio: True
+                    Image:
+                        source: 'plotdata.jpg'
+                        allow_stretch: True
+                        keep_ratio: True 
 
-        TabbedPanelItem:
-            text: "Steel"
+            TabbedPanelItem:
+                text: "Steel"
 
-        TabbedPanelItem:
-            text: "Aluminum"
+            TabbedPanelItem:
+                text: "Aluminum"
 
-        TabbedPanelItem:
-            text: "Concrete"
+            TabbedPanelItem:
+                text: "Concrete"
 
-        TabbedPanelItem:
-            text: "Plastic"
+            TabbedPanelItem:
+                text: "Plastic"
+
+        Button: 
+            text: "Go Back"
+            pos_hint: {"left": 1, "bottom": 0}
+            size_hint: 0.1, 0.1
+            on_release:
+                #root.reset_error_message() 
+                app.root.current = "variables"
+                root.manager.transition.direction = "left"
+
+
+
+    
 
 
 
