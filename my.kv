@@ -225,65 +225,88 @@ WindowManager:
     name: "output"
     id: output
 
-    GridLayout: 
-        size_hint: 1, 0.5
-        pos_hint: {"center_x": 0.5, "bottom": 0.5}
-        rows: 5
-        cols: 1
+
+
+    FloatLayout: 
+
+        Button:
+            size_hint: 1, 0.2
+            pos_hint: {"top": 1}
+            id: error_checker
+            text: "Calculation Successful"
+            
+
 
         #Button: 
             #text: "check output list"
             #on_press: root.output_pass()
-
-        Button:
-            id: error_checker
-            text: "Calculation Successful"
-            on_release: root.manager.current = "matplotlib"
-            on_release: root.save_plot_data()
-
         #Button: 
             #text: "Output Results"
 
-        BoxLayout:
+        GridLayout:
+            size_hint: 1, 0.5
+            pos_hint: {"center_y": 0.5}
+
+            rows: 3
+            cols: 2
+
+            Label: 
+                text: "Left Angle (rad)"
             Button:
                 id: angle_left_label
                 text: "angle left label"
+            Label: 
+                text: "Right Angle (rad)"    
             Button:
                 id: angle_right_label
                 text: "angle right label"
+            Label: 
+                text: "Deflection (m)"    
             Button:
                 id: deflection_label
                 text: "deflection label"
 
         Button: 
+            size_hint: 0.1, 0.1
+            pos_hint: {"left": 1, "bottom": 0} 
             text: "Go Back" 
             on_release:
                 #root.reset_error_message() 
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
+
+        Button:
+            size_hint: 0.9, 0.1
+            pos_hint: {"right": 1, "bottom": 0} 
+            text: "Show Price History of Material (or whatever graph you want)"
+            on_release: root.manager.current = "matplotlib"
+            on_release: root.save_plot_data()
+            
                 
 
 <Matplotlib>:
     name: "matplotlib"
     id: matplotlib
+
     #BoxLayout:
         #id: grid
         #size_hint_y: 0.8
         #pos_hint: {"top":1}
 
-    GridLayout:
-        rows: 3
-        cols: 1
+    FloatLayout:
 
         Image:
+            size_hint: 1, 0.7
+            pos_hint: {"top": 1}
             source: 'plotdata.jpg'
             allow_stretch: True
             keep_ratio: True
 
         Button:
-            text: "Results"
+            size_hint: 0.1, 0.1
+            pos_hint: {"left": 1, "bottom": 0} 
+            text: "Go back"
             on_release: root.manager.current = "output"
-        Button:
-            text: "Show it!"
+
 
     
