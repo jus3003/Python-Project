@@ -30,6 +30,7 @@ WindowManager:
                 #root.manager.connection = self.text
                 #root.manager.connection = "fixed"
                 root.manager.connection = 'fixed-free-diagram.jpg'
+                root.manager.connection_deflection = 'fixed-deflected.jpg'
                 on_release: root.connection_fixed()       
                     
         ToggleButton:
@@ -46,6 +47,7 @@ WindowManager:
                 #root.manager.connection = self.text
                 #root.manager.connection = "pin"
                 root.manager.connection = 'pin-roller-diagram.jpg'
+                root.manager.connection_deflection = 'pin-deflected.jpg'
                 on_release: root.connection_pin()      
 
 <VariablesWindow>:
@@ -240,8 +242,6 @@ WindowManager:
             id: error_checker
             text: "Calculation Successful"
             
-
-
         #Button: 
             #text: "check output list"
             #on_press: root.output_pass()
@@ -249,8 +249,19 @@ WindowManager:
             #text: "Output Results"
 
         GridLayout:
+            size_hint: 0.8, 0.25
+            pos_hint: {"top": 0.775, "center_x": 0.5}
+            rows: 1
+            cols: 1
+            
+            Image:
+                source: root.manager.connection_deflection
+                allow_stretch: True
+                keep_ratio: True
+
+        GridLayout:
             size_hint: 1, 0.5
-            pos_hint: {"center_y": 0.5}
+            pos_hint: {"bottom": 0.9}
 
             rows: 3
             cols: 2
@@ -370,10 +381,6 @@ WindowManager:
                     source: 'ppi-plastic.jpg'
                     allow_stretch: True
                     keep_ratio: True
-
-    
-
-
 
 
 <Matplotlib>:
