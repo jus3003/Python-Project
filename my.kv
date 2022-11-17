@@ -279,10 +279,25 @@ WindowManager:
         Button:
             size_hint: 0.9, 0.1
             pos_hint: {"right": 1, "bottom": 0} 
-            text: "Show Price History of Material (or whatever graph you want)"
-            on_release: root.manager.current = "matplotlib"
+            text: "Material Information"
+            #on_release: root.manager.current = "matplotlib"
+            on_release: Factory.MyPopup().open()
             on_release: root.save_plot_data()
-            
+
+#: import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+    #auto_dismiss: False
+    title: "Material Information"
+    size_hint: 0.7, 0.7
+    pos_hint: {"bottom": 1, "center_x":0.5}
+
+    #Button:
+        #text: "Close"
+        #on_release: root.dismiss()
+
+
+
 
 <Matplotlib>:
     name: "matplotlib"
