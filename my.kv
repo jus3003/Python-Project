@@ -5,16 +5,26 @@ WindowManager:
     Matplotlib:
     Experiment:
 
+#Establish Format
+<Button>
+    background_normal: ''
+    background_color: (191/255,87/255,0/255,1)
+
+<ToggleButton>
+    background_normal: ''
+    background_color: (191/255,87/255,0/255,1)
+
+
 <ConnectionWindow>:
     name: "connection"
     id: connection
 
     FloatLayout:
         Button: 
-            text: "CLUELESS.INC"
+            text: "Are you Clueless?"
             font_size: self.width/20
-            size_hint: 1, 0.1
-            pos_hint: {"center_x": 0.5, "top": 0.9 }
+            size_hint: 1, 0.2
+            pos_hint: {"center_x": 0.5, "top": 1}
 
         ToggleButton:
             size_hint: 0.7, 0.25
@@ -23,6 +33,7 @@ WindowManager:
 
             background_normal: 'fixed-free.jpg'
             background_down: 'fixed-free.jpg'
+            background_color: (1,1,1,1)
 
             on_release:
                 app.root.current = "variables"
@@ -40,6 +51,7 @@ WindowManager:
 
             background_normal: 'pin-roller.jpg'
             background_down: 'pin-roller.jpg'
+            background_color: (1,1,1,1)
 
             on_release:
                 app.root.current = "variables"
@@ -215,6 +227,7 @@ WindowManager:
 
             Button: 
                 text: "Calculate"
+                font_size: self.width/20
                 on_press: root.save_variables()
                 on_release: root.calculate_variables()
                 on_release: root.manager.current = "output"
@@ -222,7 +235,7 @@ WindowManager:
         Button:
             size_hint: 0.1, 0.1
             pos_hint: {"left": 1, "bottom": 0}
-            text: "Go Back"
+            text: "Back"
             on_release:
                 app.root.current = "connection"
                 root.manager.transition.direction = "right"
@@ -241,6 +254,7 @@ WindowManager:
             pos_hint: {"top": 1}
             id: error_checker
             text: "Calculation Successful"
+            font_size: self.width/20
             
         #Button: 
             #text: "check output list"
@@ -250,7 +264,7 @@ WindowManager:
 
         GridLayout:
             size_hint: 0.8, 0.25
-            pos_hint: {"top": 0.775, "center_x": 0.5}
+            pos_hint: {"top": 0.75, "center_x": 0.5}
             rows: 1
             cols: 1
             
@@ -260,8 +274,8 @@ WindowManager:
                 keep_ratio: True
 
         GridLayout:
-            size_hint: 1, 0.5
-            pos_hint: {"bottom": 0.9}
+            size_hint: 0.8, 0.4
+            pos_hint: {"bottom": 0.8, "right": 0.9}
 
             rows: 3
             cols: 2
@@ -271,21 +285,28 @@ WindowManager:
             Button:
                 id: angle_left_label
                 text: "angle left label"
+                font_size: self.width/10
+                #background_color: (1,1,1,1)
+                #color: (0,0,0,1/255)
             Label: 
                 text: "Right Angle (rad)"    
             Button:
                 id: angle_right_label
                 text: "angle right label"
+                font_size: self.width/10
+                #background_color: (1,1,1,1)
             Label: 
                 text: "Deflection (m)"    
             Button:
                 id: deflection_label
                 text: "deflection label"
+                font_size: self.width/10
+                #background_color: (1,1,1,1)
 
         Button: 
             size_hint: 0.1, 0.1
             pos_hint: {"left": 1, "bottom": 0} 
-            text: "Go Back" 
+            text: "Back" 
             on_release:
                 #root.reset_error_message() 
                 app.root.current = "variables"
@@ -424,7 +445,7 @@ WindowManager:
                 text: "Plastic"
 
         Button: 
-            text: "Go Back"
+            text: "Back"
             pos_hint: {"left": 1, "bottom": 0}
             size_hint: 0.1, 0.1
             on_release:
