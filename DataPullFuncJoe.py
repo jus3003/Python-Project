@@ -15,32 +15,33 @@ import pandas as pd
 
 def getE(Material):
 
+    #Get Data from the website and store in Data Frame
     url = 'https://www.engineeringtoolbox.com/young-modulus-d_417.html'
     html = requests.get(url).content
     df_list = pd.read_html(html)
     df = df_list[-1]
-    #df.to_csv('MaterialProperties.csv')
+    df.to_csv('MaterialProperties.csv')
     df.columns = ['Material', 'YM', 'UTS', 'YS']
 
-#data = df.set_index('Material').to_dict(orient='index')
+    #Create dictionary to associate materials with their E values
     data = df.to_dict(orient='index')
-#del data[('UTS')]
-#del data[('YS')]
-
+    
+    #Search the dictionary for the getE() input material
     i = Material
-
     n = 0
     for n in range(len(data)):
+        #when material is found store the Young's Modulus
         if i == data[n]['Material']:
             Epull = data[n]['YM']
-            break
         else:
             n = n + 1
-
-    if Epull == 'nan':
+        
+    #Check if no E value is given in table
+    if Epull == 'NaN':
         print("There is no Young's Modulus Available")
+    #Check if a range is given and return the lowest E value
     else:
-        E = (float(Epull.split('-')[0])*(10**6))
+        E = (float(Epull.split('-')[0])*(10**6)) #Convert GPa to Pa
         print("The Young's Modulus is ",E," Pa")
 
 
