@@ -3,6 +3,7 @@ WindowManager:
     VariablesWindow:
     OutputWindow:
     Matplotlib:
+    Experiment:
 
 <ConnectionWindow>:
     name: "connection"
@@ -288,25 +289,89 @@ WindowManager:
     name: "matplotlib"
     id: matplotlib
 
+    #
+    do_default: False
+
+
+
+
+
+
+
     #BoxLayout:
         #id: grid
         #size_hint_y: 0.8
         #pos_hint: {"top":1}
 
-    FloatLayout:
+    #FloatLayout:
 
-        Image:
-            size_hint: 1, 0.7
-            pos_hint: {"top": 1}
-            source: 'plotdata.jpg'
-            allow_stretch: True
-            keep_ratio: True
+        #Image:
+            #size_hint: 1, 0.7
+            #pos_hint: {"top": 1}
+            #source: 'plotdata.jpg'
+            #allow_stretch: True
+            #keep_ratio: True
 
-        Button:
-            size_hint: 0.1, 0.1
-            pos_hint: {"left": 1, "bottom": 0} 
-            text: "Go back"
-            on_release: root.manager.current = "output"
+        #Button:
+            #size_hint: 0.1, 0.1
+            #pos_hint: {"left": 1, "bottom": 0} 
+            #text: "Go back"
+            #on_release: root.manager.current = "output"
 
+
+<Experiment>:
+    name: "experiment"
+    id: experiment
+
+    BoxLayout: 
+        orientation: "vertical"
+        size_hint: 1, 0.8
+        pos_hint: {"top": 0.7}    
+
+        Accordion: 
+            orientation: 'vertical'
+
+            AccordionItem: 
+                title: "Wood"
+
+                Carousel:
+                    direction: "right"
+                    Image:
+                        source: 'pin-roller.jpg'
+                    Image:
+                        source: 'fixed-free.jpg'
+                    Image:
+                        source: 'plotdata.jpg' 
+
+                #Image:
+                    #source: 'plotdata.jpg'
+                    #allow_stretch: True
+                    #keep_ratio: True
+
+                
+            AccordionItem: 
+                title: "Steel"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True            
+            AccordionItem: 
+                title: "Aluminum"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+            AccordionItem: 
+                title: "Concrete"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True            
+            AccordionItem: 
+                title: "Plastic"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
 
     
