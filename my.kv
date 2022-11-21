@@ -29,7 +29,6 @@ WindowManager:
         ToggleButton:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.7 }
-            #text: "Fixed-Free" 
 
             background_normal: 'fixed-free.jpg'
             background_down: 'fixed-free.jpg'
@@ -38,8 +37,6 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-                #root.manager.connection = self.text
-                #root.manager.connection = "fixed"
                 root.manager.connection = 'fixed-free-diagram.jpg'
                 root.manager.connection_deflection = 'fixed-deflected.jpg'
                 on_release: root.connection_fixed()       
@@ -47,7 +44,6 @@ WindowManager:
         ToggleButton:
             size_hint: 0.7, 0.25
             pos_hint: {"center_x": 0.5, "top": 0.35 }
-            #text: "Pin-Roller"
 
             background_normal: 'pin-roller.jpg'
             background_down: 'pin-roller.jpg'
@@ -56,8 +52,6 @@ WindowManager:
             on_release:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-                #root.manager.connection = self.text
-                #root.manager.connection = "pin"
                 root.manager.connection = 'pin-roller-diagram.jpg'
                 root.manager.connection_deflection = 'pin-deflected.jpg'
                 on_release: root.connection_pin()      
@@ -74,10 +68,6 @@ WindowManager:
             cols: 1
             rows: 1
 
-            #Button:
-                #background_normal: 'pin-roller.jpg'
-                #background_down: 'pin-roller.jpg'   
-
             Image:
                 source: root.manager.connection
                 allow_stretch: True
@@ -89,9 +79,6 @@ WindowManager:
             cols: 3
             rows: 1
             spacing: [5,0]
-
-            #Button:
-                #text: root.manager.load
 
             ToggleButton:
                 id: distributed
@@ -120,9 +107,6 @@ WindowManager:
             cols: 6
             rows: 1
             spacing: [5,0]
-
-            #Button:
-                #text: root.manager.mat
 
             Button:
                 text: "Material Info"
@@ -208,17 +192,6 @@ WindowManager:
                     multiline: False
                     input_filter: 'float'
 
-            #Label:
-                #text: "R"
-            #TextInput:
-                #id: r_value
-                #multiline: False
-                #input_filter: 'float'                
-                
-            #Button: 
-                #text: "Save Load/Connection Type"
-                #on_release: root.save_load_type()
-
         GridLayout:
             size_hint: 0.7, 0.1
             pos_hint: {"center_x": 0.5, "top": 0.1}
@@ -245,8 +218,6 @@ WindowManager:
     name: "output"
     id: output
 
-
-
     FloatLayout: 
 
         Button:
@@ -255,12 +226,6 @@ WindowManager:
             id: error_checker
             text: "Calculation Successful"
             font_size: self.width/20
-            
-        #Button: 
-            #text: "check output list"
-            #on_press: root.output_pass()
-        #Button: 
-            #text: "Output Results"
 
         GridLayout:
             size_hint: 0.8, 0.25
@@ -311,14 +276,6 @@ WindowManager:
                 #root.reset_error_message() 
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
-
-        #Button:
-            #size_hint: 0.9, 0.1
-            #pos_hint: {"right": 1, "bottom": 0} 
-            #text: "Material Information"
-            ##on_release: root.manager.current = "matplotlib"
-            #on_release: Factory.MyPopup().open()
-            #on_release: root.save_plot_data()
 
 #: import Factory kivy.factory.Factory
 
@@ -453,33 +410,6 @@ WindowManager:
                 app.root.current = "variables"
                 root.manager.transition.direction = "left"
 
-
-
-    
-
-
-
-    #BoxLayout:
-        #id: grid
-        #size_hint_y: 0.8
-        #pos_hint: {"top":1}
-
-    #FloatLayout:
-
-        #Image:
-            #size_hint: 1, 0.7
-            #pos_hint: {"top": 1}
-            #source: 'plotdata.jpg'
-            #allow_stretch: True
-            #keep_ratio: True
-
-        #Button:
-            #size_hint: 0.1, 0.1
-            #pos_hint: {"left": 1, "bottom": 0} 
-            #text: "Go back"
-            #on_release: root.manager.current = "output"
-
-
 <Experiment>:
     name: "experiment"
     id: experiment
@@ -503,12 +433,6 @@ WindowManager:
                         source: 'fixed-free.jpg'
                     Image:
                         source: 'plotdata.jpg' 
-
-                #Image:
-                    #source: 'plotdata.jpg'
-                    #allow_stretch: True
-                    #keep_ratio: True
-
                 
             AccordionItem: 
                 title: "Steel"                
