@@ -1,0 +1,462 @@
+WindowManager:
+    ConnectionWindow:
+    VariablesWindow:
+    OutputWindow:
+    Matplotlib:
+    Experiment:
+
+#Establish Format
+<Button>
+    background_normal: ''
+    background_color: (191/255,87/255,0/255,1)
+
+<ToggleButton>
+    background_normal: ''
+    background_color: (191/255,87/255,0/255,1)
+
+
+<ConnectionWindow>:
+    name: "connection"
+    id: connection
+
+    FloatLayout:
+        Button: 
+            text: "Are you Clueless?"
+            font_size: self.width/20
+            size_hint: 1, 0.2
+            pos_hint: {"center_x": 0.5, "top": 1}
+
+        ToggleButton:
+            size_hint: 0.7, 0.25
+            pos_hint: {"center_x": 0.5, "top": 0.7 }
+
+            background_normal: 'fixed-free.jpg'
+            background_down: 'fixed-free.jpg'
+            background_color: (1,1,1,1)
+
+            on_release:
+                app.root.current = "variables"
+                root.manager.transition.direction = "left"
+                root.manager.connection = 'fixed-free-diagram.jpg'
+                root.manager.connection_deflection = 'fixed-deflected.jpg'
+                on_release: root.connection_fixed()       
+                    
+        ToggleButton:
+            size_hint: 0.7, 0.25
+            pos_hint: {"center_x": 0.5, "top": 0.35 }
+
+            background_normal: 'pin-roller.jpg'
+            background_down: 'pin-roller.jpg'
+            background_color: (1,1,1,1)
+
+            on_release:
+                app.root.current = "variables"
+                root.manager.transition.direction = "left"
+                root.manager.connection = 'pin-roller-diagram.jpg'
+                root.manager.connection_deflection = 'pin-deflected.jpg'
+                on_release: root.connection_pin()      
+
+<VariablesWindow>:
+    name: "variables"
+    id: variables
+
+    FloatLayout:
+        
+        GridLayout:
+            size_hint: 1, 0.3
+            pos_hint: {"center_x": 0.5, "top": 0.95 }
+            cols: 1
+            rows: 1
+
+            Image:
+                source: root.manager.connection
+                allow_stretch: True
+                keep_ratio: True
+
+        GridLayout:
+            size_hint: 0.7, 0.07
+            pos_hint: {"center_x": 0.5, "top": 0.6}
+            cols: 3
+            rows: 1
+            spacing: [5,0]
+
+            ToggleButton:
+                id: distributed
+                text: "Distributed Load (N/m)"
+                group: 'load_buttons'
+                on_press: root.manager.load = self.text
+                on_press: root.load_distributed()                   
+                    
+            ToggleButton:
+                id: point
+                text: "Point Load (N)"
+                group: 'load_buttons'
+                on_press: root.manager.load = self.text
+                on_press: root.load_point()
+    
+            ToggleButton:
+                id: moment
+                text: "Moment (N x m)"
+                group: 'load_buttons'
+                on_press: root.manager.load = self.text
+                on_press: root.load_moment()
+
+        GridLayout:
+            size_hint: 0.8, 0.07
+            pos_hint: {"center_x": 0.5, "top": 0.5}
+            cols: 6
+            rows: 1
+            spacing: [5,0]
+
+            Button:
+                text: "Material Info"
+                on_press: Factory.MyPopup().open()
+            
+            ToggleButton:
+                id: wood
+                text: "Wood"
+                group: 'material_buttons'
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_wood()        
+                    
+            ToggleButton:
+                id: steel
+                text: "Steel"
+                group: 'material_buttons'
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_steel()
+
+            ToggleButton:
+                id: aluminum
+                text: "Aluminum"
+                group: 'material_buttons'
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_aluminum()
+
+            ToggleButton:
+                id: concrete
+                text: "Concrete"
+                group: 'material_buttons'
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_concrete()
+
+            ToggleButton:
+                id: plastic
+                text: "Plastic"
+                group: 'material_buttons'
+                on_press: root.manager.mat = self.text
+                on_press: root.mat_plastic()
+
+        FloatLayout:
+            id: container
+
+            GridLayout:
+                cols: 1
+                size_hint: 0.2, 0.2
+                pos_hint: {"x": 0.25, "top": 0.35}
+
+                Label:
+                    text: "Load Magnitude"
+                Label:
+                    text: "Load Location A (m)"            
+                Label:
+                    text: "Beam Base (m)"
+                Label:
+                    text: "Beam Height (m)"
+                Label:
+                    text: "Beam Length (m)"            
+
+            GridLayout:
+                cols: 1
+                size_hint: 0.35, 0.2
+                pos_hint: {"x": 0.45, "top": 0.35 }
+
+                TextInput:
+                    id: load_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: a_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: b_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: h_value
+                    multiline: False
+                    input_filter: 'float'
+                TextInput:
+                    id: l_value
+                    multiline: False
+                    input_filter: 'float'
+
+        GridLayout:
+            size_hint: 0.7, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.1}
+            cols: 1
+            rows: 1
+
+            Button: 
+                text: "Calculate"
+                font_size: self.width/20
+                on_press: root.save_variables()
+                on_release: root.calculate_variables()
+                on_release: root.manager.current = "output"
+
+        Button:
+            size_hint: 0.1, 0.1
+            pos_hint: {"left": 1, "bottom": 0}
+            text: "Back"
+            on_release:
+                app.root.current = "connection"
+                root.manager.transition.direction = "right"
+
+
+<OutputWindow>:
+    name: "output"
+    id: output
+
+    FloatLayout: 
+
+        Button:
+            size_hint: 1, 0.2
+            pos_hint: {"top": 1}
+            id: error_checker
+            text: "Calculation Successful"
+            font_size: self.width/20
+
+        GridLayout:
+            size_hint: 0.8, 0.25
+            pos_hint: {"top": 0.75, "center_x": 0.5}
+            rows: 1
+            cols: 1
+            
+            Image:
+                source: root.manager.connection_deflection
+                allow_stretch: True
+                keep_ratio: True
+
+        GridLayout:
+            size_hint: 0.8, 0.4
+            pos_hint: {"bottom": 0.8, "right": 0.9}
+
+            rows: 3
+            cols: 2
+
+            Label: 
+                text: "Left Angle (rad)"
+            Button:
+                id: angle_left_label
+                text: "angle left label"
+                font_size: self.width/10
+                #background_color: (1,1,1,1)
+                #color: (0,0,0,1/255)
+            Label: 
+                text: "Right Angle (rad)"    
+            Button:
+                id: angle_right_label
+                text: "angle right label"
+                font_size: self.width/10
+                #background_color: (1,1,1,1)
+            Label: 
+                text: "Deflection (m)"    
+            Button:
+                id: deflection_label
+                text: "deflection label"
+                font_size: self.width/10
+                #background_color: (1,1,1,1)
+
+        Button: 
+            size_hint: 0.1, 0.1
+            pos_hint: {"left": 1, "bottom": 0} 
+            text: "Back" 
+            on_release:
+                #root.reset_error_message() 
+                app.root.current = "variables"
+                root.manager.transition.direction = "left"
+
+#: import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+    #auto_dismiss: False
+    title: "Material Information"
+    size_hint: 0.7, 0.7
+    pos_hint: {"bottom": 1, "center_x":0.5}
+
+    #Button:
+        #text: "Close"
+        #on_release: root.dismiss()
+
+    TabbedPanel: 
+        size_hint: 1, 0.9
+        pos_hint: {"top":1}
+        do_default_tab: False
+
+        TabbedPanelItem:
+            text: "Wood"
+
+            Carousel:
+                direction: "right"
+                Image:
+                    source: 'wood.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+                Image:
+                    source: 'ppi-wood.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+
+        TabbedPanelItem:
+            text: "Steel"
+            Carousel:
+                direction: "right"
+                Image:
+                    source: 'steel.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+                Image:
+                    source: 'ppi-steel.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+
+        TabbedPanelItem:
+            text: "Aluminum"
+            Carousel:
+                direction: "right"
+                Image:
+                    source: 'aluminum.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+                Image:
+                    source: 'ppi-aluminum.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+
+        TabbedPanelItem:
+            text: "Concrete"
+            Carousel:
+                direction: "right"
+                Image:
+                    source: 'concrete.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+                Image:
+                    source: 'ppi-concrete.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+
+        TabbedPanelItem:
+            text: "Plastic"
+            Carousel:
+                direction: "right"
+                Image:
+                    source: 'plastic.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+                Image:
+                    source: 'ppi-plastic.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+
+
+<Matplotlib>:
+    name: "matplotlib"
+    id: matplotlib
+    
+    FloatLayout:
+        TabbedPanel: 
+            size_hint: 1, 0.9
+            pos_hint: {"top":1}
+            do_default_tab: False
+
+            TabbedPanelItem:
+                text: "Wood"
+
+                Carousel:
+                    direction: "right"
+                    Image:
+                        source: 'pin-roller.jpg'
+                        allow_stretch: True
+                        keep_ratio: True
+                    Image:
+                        source: 'fixed-free.jpg'
+                        allow_stretch: True
+                        keep_ratio: True
+                    Image:
+                        source: 'plotdata.jpg'
+                        allow_stretch: True
+                        keep_ratio: True 
+
+            TabbedPanelItem:
+                text: "Steel"
+
+            TabbedPanelItem:
+                text: "Aluminum"
+
+            TabbedPanelItem:
+                text: "Concrete"
+
+            TabbedPanelItem:
+                text: "Plastic"
+
+        Button: 
+            text: "Back"
+            pos_hint: {"left": 1, "bottom": 0}
+            size_hint: 0.1, 0.1
+            on_release:
+                #root.reset_error_message() 
+                app.root.current = "variables"
+                root.manager.transition.direction = "left"
+
+<Experiment>:
+    name: "experiment"
+    id: experiment
+
+    BoxLayout: 
+        orientation: "vertical"
+        size_hint: 1, 0.8
+        pos_hint: {"top": 0.7}    
+
+        Accordion: 
+            orientation: 'vertical'
+
+            AccordionItem: 
+                title: "Wood"
+
+                Carousel:
+                    direction: "right"
+                    Image:
+                        source: 'pin-roller.jpg'
+                    Image:
+                        source: 'fixed-free.jpg'
+                    Image:
+                        source: 'plotdata.jpg' 
+                
+            AccordionItem: 
+                title: "Steel"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True            
+            AccordionItem: 
+                title: "Aluminum"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+            AccordionItem: 
+                title: "Concrete"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True            
+            AccordionItem: 
+                title: "Plastic"                
+                Image:
+                    source: 'plotdata.jpg'
+                    allow_stretch: True
+                    keep_ratio: True
+
+    
