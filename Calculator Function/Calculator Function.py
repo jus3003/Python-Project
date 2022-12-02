@@ -2,7 +2,7 @@
 """
 Created on Sat Nov  5 22:46:21 2022
 
-@author: Rachel
+@author: Rachel P
 """
 import numpy as np
 #first creating functions for the area and the moment of inertia
