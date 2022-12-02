@@ -287,7 +287,7 @@ class WindowManager(ScreenManager):
     connection_deflection = StringProperty("")
 
 
-kv = Builder.load_file("3. my.kv")
+kv = Builder.load_file("my.kv")
 
 class MainApp (App):
     def build (self):
